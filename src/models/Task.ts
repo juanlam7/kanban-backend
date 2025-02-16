@@ -8,11 +8,14 @@ export interface ITask extends Document {
   subtasks: ISubTask[];
 }
 
-const TaskSchema: Schema = new Schema({
-  title: { type: String, required: true },
-  status: { type: String, required: true },
-  description: { type: String, required: true },
-  subtasks: [{ type: mongoose.Schema.Types.ObjectId, ref: "SubTask" }],
-});
+const TaskSchema: Schema = new Schema(
+  {
+    title: { type: String, required: true },
+    status: { type: String, required: true },
+    description: { type: String, required: true },
+    subtasks: [{ type: mongoose.Schema.Types.ObjectId, ref: "SubTask" }],
+  },
+  { timestamps: true }
+);
 
 export default mongoose.model<ITask>("Task", TaskSchema);
